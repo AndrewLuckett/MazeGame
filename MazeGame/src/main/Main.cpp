@@ -22,25 +22,27 @@ int main() {
 	Poly test = Poly(pent, 5);
 	PolySSDat d = test.getSSDat(temp);
 
-	init("Maze Game - Andrew Luckett 2019");
-	myinit();
+	renderer::init("Maze Game - Andrew Luckett 2019");
+	renderer::myinit();
 
-	loadPoly(d);
+	renderer::loadPoly(d);
+
+
 
 	/* Loop until the user closes the window */
-	while (isRunning()) {
+	while (renderer::isRunning()) {
 
 		//Handle inputs
 
 		//Other per frame game ops
 
-		clearScreen();
+		renderer::clearScreen();
 
 		//Render stuff
-		draw();
-		pushToScreen();
+		renderer::draw();
+		renderer::pushToScreen();
 	}
 
-	close();
+	renderer::close();
 	return 0;
 }

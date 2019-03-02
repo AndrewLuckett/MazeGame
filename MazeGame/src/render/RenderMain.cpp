@@ -9,12 +9,12 @@
 GLFWwindow* window;
 
 
-bool isRunning() {
+bool renderer::isRunning() {
 	return !glfwWindowShouldClose(window);
 }
 
 
-int init(const char* windowTitle) {
+int renderer::init(const char* windowTitle) {
 	/* Initialize the library */
 	if (!glfwInit()) return -2;
 
@@ -36,7 +36,7 @@ int init(const char* windowTitle) {
 	return 0;
 }
 
-int myinit() {
+int renderer::myinit() {
 	string vs = ParseFile("res/shaders/light.vert");
 	string fs = ParseFile("res/shaders/light.frag");
 
@@ -46,7 +46,7 @@ int myinit() {
 	return 0;
 }
 
-int pushToScreen() {
+int renderer::pushToScreen() {
 	/* Swap front and back buffers */
 	glfwSwapBuffers(window);
 
@@ -55,20 +55,20 @@ int pushToScreen() {
 	return 0;
 }
 
-int clearScreen() {
+int renderer::clearScreen() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	return 0;
 }
 
 uint loadedElementCount = 3;
 
-int draw() {
+int renderer::draw() {
 	//glDrawArrays(GL_TRIANGLES,0,3);
 	glDrawElements(GL_TRIANGLES, loadedElementCount, GL_UNSIGNED_INT, 0);
 	return 0;
 }
 
-int loadPoly(PolySSDat dat) {
+int renderer::loadPoly(PolySSDat dat) {
 	uint vertexarray;
 	glGenVertexArrays(1, &vertexarray);
 	glBindVertexArray(vertexarray);
@@ -90,7 +90,7 @@ int loadPoly(PolySSDat dat) {
 	return 0;
 }
 
-int close() {
+int renderer::close() {
 	glfwTerminate();
 	return 0;
 }

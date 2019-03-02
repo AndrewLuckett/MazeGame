@@ -1,5 +1,5 @@
 #include "Poly.h"
-
+#include <iostream>
 
 Poly::Poly(vec2* vertices, uint vertexcount) {
 	Poly::vertices = vertices;
@@ -7,24 +7,26 @@ Poly::Poly(vec2* vertices, uint vertexcount) {
 	Poly::colour = { 0.1f,0.5f,0.5f };
 }
 
-
 PolySSDat Poly::getSSDat(vec2 (*normalizingfcnptr)(vec2)) {
 	vec2* vert = vertices;
-	for (int i = 0; i < vertexCount; i++) {
+	for (uint i = 0; i < vertexCount; i++) {
 		vert[i] = (normalizingfcnptr)(vertices[i]);
-
 	}
 	PolySSDat dat = {vert,vertexCount,triangulate(),getColour()};
 	return dat;
 }
 
 uint* Poly::triangulate() {
-	//TODO: Find an algo for this
-	//Hardcoded for now
+	//TODO: Find a better algo
 	
-	static uint e[6] = { 0, 1, 2,
-	                     2, 3, 0 };
-	return e;
+	uint* out = new uint[3 * (vertexCount - 2)];
+	for (uint i = 0; i < vertexCount - 2; i++) {
+		out[i * 3] = 0;
+		out[i * 3 + 1] = i + 1;
+		out[i * 3 + 2] = i + 2;
+	}
+
+	return out;
 }
 
 float* Poly::getColour() {

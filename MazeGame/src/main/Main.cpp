@@ -11,22 +11,15 @@ vec2 temp(vec2 in) { //Test normalisation function
 	return out;
 }
 
-
-/*
-* Termination codes:
-* 0 : Normal exit
-* -1 : Standard Err
-* -2 : GLFW Err
-* -3 : GLEW Err
-*/
 int main() {
 
-	vec2 square[4] = {{-0.8f, 0.5f },
+	vec2 pent[5] = {{-0.8f, 0.5f },
 					  { 0.5f, 0.5f },
-                      { 0.5f, -0.4f},
-			          {-0.8f,-0.7f}};
+                      { 0.5f,-0.4f },
+					  {-0.6f,-0.7f },
+					  {-0.99f, 0.0f } };
 	
-	Poly test = Poly(square, 4);
+	Poly test = Poly(pent, 5);
 	PolySSDat d = test.getSSDat(temp);
 
 	init("Maze Game - Andrew Luckett 2019");

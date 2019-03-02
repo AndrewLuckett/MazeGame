@@ -17,7 +17,7 @@ class Poly { //Should be called block or something
 		float* Poly::getColour();
     private:
 		vec2* vertices;
-		int vertexCount;
+		uint vertexCount;
 		vec2 location; //Based around vertex 0
 		vec3 colour;
 

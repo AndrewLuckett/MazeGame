@@ -60,9 +60,11 @@ int clearScreen() {
 	return 0;
 }
 
+uint loadedElementCount = 3;
+
 int draw() {
 	//glDrawArrays(GL_TRIANGLES,0,3);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, loadedElementCount, GL_UNSIGNED_INT, 0);
 	return 0;
 }
 
@@ -79,10 +81,11 @@ int loadPoly(PolySSDat dat) {
 	uint elementbuffer;
 	glGenBuffers(1, &elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint)*3*(dat.vertexcount-2), dat.elements, GL_STATIC_DRAW);
+	loadedElementCount = sizeof(uint) * 3 * (dat.vertexcount - 2);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, loadedElementCount, dat.elements, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 2 * sizeof(float), 0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
 
 	return 0;
 }

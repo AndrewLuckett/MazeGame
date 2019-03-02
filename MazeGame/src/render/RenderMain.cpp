@@ -3,6 +3,7 @@
 #include "../global/Shorts.h"
 #include <iostream>
 
+#include "RenderMain.h"
 #include "ShaderGen.h"
 
 GLFWwindow* window;
@@ -13,14 +14,11 @@ bool isRunning() {
 }
 
 
-int init() {
-
+int init(const char* windowTitle) {
 	/* Initialize the library */
 	if (!glfwInit()) return -2;
 
-
-	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(1280, 960, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(1280, 960, windowTitle, NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		return -2;
@@ -39,35 +37,6 @@ int init() {
 }
 
 int myinit() {
-	uint vertexarray;
-	glGenVertexArrays(1, &vertexarray);
-	glBindVertexArray(vertexarray);
-
-	float vertices[] = {
-		-0.5f,0.5f,
-		0.5f, 0.5f,
-		0.5f, -0.5f,
-		-0.5f,-0.5f
-	};
-
-	uint vertexbuffer;
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	uint elements[] = {
-	0, 1, 2,
-	2, 3, 0
-	};
-
-	uint elementbuffer;
-	glGenBuffers(1, &elementbuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 2 * sizeof(float), 0);
-
 	string vs = ParseFile("res/shaders/light.vert");
 	string fs = ParseFile("res/shaders/light.frag");
 
@@ -77,18 +46,43 @@ int myinit() {
 	return 0;
 }
 
-int renderop() {
-	/* Render here */
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	//glDrawArrays(GL_TRIANGLES,0,3);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
+int pushToScreen() {
 	/* Swap front and back buffers */
 	glfwSwapBuffers(window);
 
 	/* Poll for and process events */
 	glfwPollEvents();
+	return 0;
+}
+
+int clearScreen() {
+	glClear(GL_COLOR_BUFFER_BIT);
+	return 0;
+}
+
+int draw() {
+	//glDrawArrays(GL_TRIANGLES,0,3);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	return 0;
+}
+
+int loadPoly(PolySSDat dat) {
+	uint vertexarray;
+	glGenVertexArrays(1, &vertexarray);
+	glBindVertexArray(vertexarray);
+
+	uint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*dat.vertexcount*2, dat.vertices, GL_STATIC_DRAW);
+
+	uint elementbuffer;
+	glGenBuffers(1, &elementbuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint)*3*(dat.vertexcount-2), dat.elements, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 2 * sizeof(float), 0);
 
 	return 0;
 }

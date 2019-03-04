@@ -131,12 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\GameMain.cpp" />
     <ClCompile Include="src\core\Poly.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
     <ClCompile Include="src\render\RenderMain.cpp" />
     <ClCompile Include="src\render\ShaderGen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\GameMain.h" />
     <ClInclude Include="src\core\Poly.h" />
     <ClInclude Include="src\global\DataTypes.h" />
     <ClInclude Include="src\global\Shorts.h" />

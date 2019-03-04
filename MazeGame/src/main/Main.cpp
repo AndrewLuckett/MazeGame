@@ -4,42 +4,43 @@
 
 #include "../render/RenderMain.h"
 #include "../core/Poly.h"
+#include "../core/GameMain.h"
 
-vec2 temp(vec2 in) { //Test normalisation function
-	vec2 out = in;
-	out.x = out.x * -1;
-	return out;
+int printPolySSDat(PolySSDat p) {
+	std::cout << p.vertexcount << std::endl;
+	for (uint i = 0; i < p.vertexcount; i++) {
+		std::cout << p.vertices[i].x << "," << p.vertices[i].y << std::endl;
+	}
+	return 0;
 }
 
 int main() {
-
-	vec2 pent[5] = {{-0.8f, 0.5f },
-					  { 0.5f, 0.5f },
-                      { 0.5f,-0.4f },
-					  {-0.6f,-0.7f },
-					  {-0.99f, 0.0f } };
-	
-	Poly test = Poly(pent, 5);
-	PolySSDat d = test.getSSDat(temp);
-
 	renderer::init("Maze Game - Andrew Luckett 2019");
 	renderer::myinit();
 
-	renderer::loadPoly(d);
+	game gameInst = *new game();
 
-
+	PolySSDat* renderArrP = new PolySSDat();
+	uint renderArrC = 0;
 
 	/* Loop until the user closes the window */
 	while (renderer::isRunning()) {
 
-		//Handle inputs
+		//Get inputs here or in game update?
 
-		//Other per frame game ops
+		gameInst.update();
+		
+		gameInst.getRenderArr(&renderArrP, &renderArrC);
 
 		renderer::clearScreen();
 
-		//Render stuff
+		for (uint i = 0; i < renderArrC; i++) {
+			renderer::loadPoly(renderArrP[i]);
+			renderer::draw();
+		}
+		
 		renderer::draw();
+		
 		renderer::pushToScreen();
 	}
 

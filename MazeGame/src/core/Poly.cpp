@@ -8,10 +8,12 @@ Poly::Poly(vec2* vertices, uint vertexcount) {
 }
 
 PolySSDat Poly::getSSDat(vec2 (*normalizingfcnptr)(vec2)) {
-	vec2* vert = vertices;
+	vec2* vert = new vec2[vertexCount];
+
 	for (uint i = 0; i < vertexCount; i++) {
 		vert[i] = (normalizingfcnptr)(vertices[i]);
 	}
+
 	PolySSDat dat = {vert,vertexCount,triangulate(),getColour()};
 	return dat;
 }

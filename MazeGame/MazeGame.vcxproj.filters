@@ -5,6 +5,7 @@
     <ClCompile Include="src\core\Poly.cpp" />
     <ClCompile Include="src\render\ShaderGen.cpp" />
     <ClCompile Include="src\render\RenderMain.cpp" />
+    <ClCompile Include="src\core\GameMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\global\Shorts.h" />
@@ -12,5 +13,6 @@
     <ClInclude Include="src\render\ShaderGen.h" />
     <ClInclude Include="src\render\RenderMain.h" />
     <ClInclude Include="src\global\DataTypes.h" />
+    <ClInclude Include="src\core\GameMain.h" />
   </ItemGroup>
 </Project>

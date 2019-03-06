@@ -6,13 +6,16 @@
     <ClCompile Include="src\render\ShaderGen.cpp" />
     <ClCompile Include="src\render\RenderMain.cpp" />
     <ClCompile Include="src\core\GameMain.cpp" />
+    <ClCompile Include="src\core\FrameCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\global\Shorts.h" />
     <ClInclude Include="src\core\Poly.h" />
     <ClInclude Include="src\render\ShaderGen.h" />
     <ClInclude Include="src\render\RenderMain.h" />
-    <ClInclude Include="src\global\DataTypes.h" />
     <ClInclude Include="src\core\GameMain.h" />
+    <ClInclude Include="src\global\Shapes.h" />
+    <ClInclude Include="src\core\System.h" />
+    <ClInclude Include="src\core\FrameCounter.h" />
   </ItemGroup>
 </Project>

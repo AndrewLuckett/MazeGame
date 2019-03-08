@@ -9,8 +9,6 @@ class GameMain : public System {
 		GameMain();
 	    int update(timesys::system_clock::duration deltaTime);
 	    int fixedUpdate();
-	    int getRenderArr(PolySSDat** arr, uint* c);
-	    int cleanup();
     private:
 	    timesys::system_clock::time_point fuLastRun;
 	    timesys::system_clock::time_point suLastRun;

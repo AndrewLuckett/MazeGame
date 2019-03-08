@@ -13,7 +13,6 @@ int FrameCounter::update(timesys::system_clock::duration deltaTime) {
 }
 
 int FrameCounter::fixedUpdate() {
-
 	auto ms = timesys::duration_cast<timesys::milliseconds>(sumTime);
 	if (ms.count() != 0) {
 		std::cout << (frames*1000.0) / ms.count() << std::endl;
@@ -25,9 +24,9 @@ int FrameCounter::fixedUpdate() {
 	return 0;
 }
 
-int FrameCounter::getRenderArr(PolySSDat ** arr, uint * c) {
-	*arr = new PolySSDat[0];
-	*c = 0;
+int FrameCounter::getRenderArr(PolySSDat* &arr, uint &c) {
+	arr = new PolySSDat[0];
+	c = 0;
 	return 0;
 }
 

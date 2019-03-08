@@ -13,8 +13,7 @@ bool renderer::isRunning() {
 	return !glfwWindowShouldClose(window);
 }
 
-
-int renderer::init(const char* windowTitle) {
+int renderer::init(const char windowTitle[]) {
 	/* Initialize the library */
 	if (!glfwInit()) return -2;
 
@@ -37,6 +36,7 @@ int renderer::init(const char* windowTitle) {
 }
 
 int renderer::myinit() {
+	//glfwSwapInterval(0); //No vsync
 	string vs = ParseFile("res/shaders/light.vert");
 	string fs = ParseFile("res/shaders/light.frag");
 

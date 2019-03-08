@@ -2,7 +2,7 @@
 
 namespace renderer {
 	bool isRunning();
-	int init(const char* windowTitle);
+	int init(const char windowTitle[]);
 	int myinit();
 	int pushToScreen();
 	int draw();

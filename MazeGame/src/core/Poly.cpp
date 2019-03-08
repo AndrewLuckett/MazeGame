@@ -1,10 +1,10 @@
 #include "Poly.h"
 #include <iostream>
 
-Poly::Poly(vec2* vertices, uint vertexcount) {
+Poly::Poly(vec2 vertices[], uint vertexcount) {
 	Poly::vertices = vertices;
 	Poly::vertexCount = vertexcount;
-	Poly::colour = { 0.1f,0.5f,0.5f };
+	//Poly::colour = { 0.1f,0.5f,0.5f };
 }
 
 PolySSDat Poly::getSSDat() {
@@ -14,7 +14,7 @@ PolySSDat Poly::getSSDat() {
 		vert[i] = vertices[i];
 	}
 
-	PolySSDat dat = {vert,vertexCount,triangulate(),getColour()};
+	PolySSDat dat = {vert,vertexCount,triangulate()};
 	return dat;
 }
 
@@ -29,11 +29,4 @@ uint* Poly::triangulate() {
 	}
 
 	return out;
-}
-
-float* Poly::getColour() {
-	static float c[3] = { colour.x,
-		                  colour.y,
-		                  colour.z };
-	return c;
 }

@@ -1,18 +1,9 @@
 #include "../global/Shorts.h"
-#include <iostream>
-
 #include "../render/RenderMain.h"
 #include "../core/Poly.h"
 #include "../core/GameMain.h"
 #include "../core/FrameCounter.h"
-
-int printPolySSDat(PolySSDat p) {
-	std::cout << p.vertexcount << std::endl;
-	for (uint i = 0; i < p.vertexcount; i++) {
-		std::cout << p.vertices[i].x << "," << p.vertices[i].y << std::endl;
-	}
-	return 0;
-}
+#include "../game/MazeGame.h"
 
 int main() {
 	renderer::init("Maze Game - Andrew Luckett 2019");
@@ -20,10 +11,10 @@ int main() {
 
 	GameMain gameInst = *new GameMain();
 
-	//gameInst.addSubSystem(new MazeGame());
-	gameInst.addSubSytem(new FrameCounter());
+	gameInst.addSubSystem(new MazeGame());
+	//gameInst.addSubSystem(new FrameCounter());
 
-	PolySSDat* renderArrP = new PolySSDat();
+	PolySSDat* renderArrP = new PolySSDat[1]();
 	uint renderArrC = 0;
 
 	/* Loop until the user closes the window */
@@ -33,7 +24,7 @@ int main() {
 
 		gameInst.update(std::chrono::system_clock::duration());
 
-		gameInst.getRenderArr(&renderArrP, &renderArrC);
+		gameInst.getRenderArr(renderArrP, renderArrC);
 
 		renderer::clearScreen();
 

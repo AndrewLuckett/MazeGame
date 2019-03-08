@@ -4,8 +4,6 @@
 timesys::system_clock::duration sumTime;
 uint frames;
 
-//TODO: render to screen
-
 int FrameCounter::update(timesys::system_clock::duration deltaTime) {
 	sumTime += deltaTime;
 	frames ++;
@@ -24,9 +22,8 @@ int FrameCounter::fixedUpdate() {
 	return 0;
 }
 
-int FrameCounter::getRenderArr(PolySSDat* &arr, uint &c) {
-	arr = new PolySSDat[0];
-	c = 0;
+int FrameCounter::getRenderArr(std::queue<PolySSDat> &arr, uint &c) {
+	//TODO: Return graphics
 	return 0;
 }
 

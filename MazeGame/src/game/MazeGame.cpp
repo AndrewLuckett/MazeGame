@@ -12,9 +12,7 @@ int MazeGame::fixedUpdate() {
 	return 0;
 }
 
-int MazeGame::getRenderArr(PolySSDat* &arr, uint &c) {
-	arr = new PolySSDat[1];
-	arr[0] = test.getSSDat();
-	c = 1;
+int MazeGame::getRenderArr(std::queue<PolySSDat> &arr, uint &c) {
+	arr.push(test.getSSDat());
 	return 0;
 }

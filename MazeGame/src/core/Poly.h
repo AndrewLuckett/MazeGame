@@ -1,10 +1,21 @@
 #pragma once
 #include "../global/Shorts.h"
+#include <iostream>
 
 struct PolySSDat { //Screen space data for poly
 	vec2* vertices;
 	uint vertexcount;
 	uint* elements;
+
+	PolySSDat(vec2* vert, uint vc, uint* ele) {
+		vertices = vert;
+		vertexcount = vc;
+		elements = ele;
+	}
+
+	~PolySSDat() {
+		//???? Errors if I delete anything here or dont have the destructor at all
+	}
 };
 
 class Poly { //Should be called block or something

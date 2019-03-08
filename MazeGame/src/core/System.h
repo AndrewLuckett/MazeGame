@@ -2,6 +2,7 @@
 #include "Poly.h"
 #include <list>
 #include <chrono>
+#include <queue>
 
 namespace timesys = std::chrono;
 
@@ -10,9 +11,8 @@ class System {
 	    virtual int update(timesys::system_clock::duration deltaTime) = 0;
 	    virtual int fixedUpdate() = 0;
 
-		virtual int getRenderArr(PolySSDat* &arr, uint &c); //Gets SSDat for elements and returns them
+		virtual int getRenderArr(std::queue<PolySSDat> &arr, uint &c); //Gets SSDat for elements and returns them
 			
-
 		int cleanup();
 
 		int addSubSystem(System* sys);

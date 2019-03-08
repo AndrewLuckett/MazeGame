@@ -5,6 +5,8 @@
 #include "../core/FrameCounter.h"
 #include "../game/MazeGame.h"
 
+#include <queue>
+
 int main() {
 	renderer::init("Maze Game - Andrew Luckett 2019");
 	renderer::myinit();
@@ -14,29 +16,31 @@ int main() {
 	gameInst.addSubSystem(new MazeGame());
 	//gameInst.addSubSystem(new FrameCounter());
 
-	PolySSDat* renderArrP = new PolySSDat[1]();
+	std::queue<PolySSDat> renderArr;
 	uint renderArrC = 0;
 
 	/* Loop until the user closes the window */
 	while (renderer::isRunning()) {
 
 		//Get inputs here or in game update?
-
+		
 		gameInst.update(std::chrono::system_clock::duration());
-
-		gameInst.getRenderArr(renderArrP, renderArrC);
-
+		
+		gameInst.getRenderArr(renderArr, renderArrC);
+		
 		renderer::clearScreen();
-		for (uint i = 0; i < renderArrC; i++) {
-			renderer::loadPoly(renderArrP[i]); //Memory leak in here????
+
+		while(renderArr.empty() == false){
+			renderer::loadPoly(renderArr.front());
+			renderArr.pop();
 			renderer::draw();
 		}
-		
-		//renderer::draw();
-		
-		renderer::pushToScreen();
-	}
 
+		renderer::pushToScreen();
+		
+	}
+	gameInst.cleanup();
 	renderer::close();
+
 	return 0;
 }

@@ -14,8 +14,7 @@ PolySSDat Poly::getSSDat() {
 		vert[i] = vertices[i];
 	}
 
-	PolySSDat dat = {vert,vertexCount,triangulate()};
-	return dat;
+	return PolySSDat(vert, vertexCount, triangulate());
 }
 
 uint* Poly::triangulate() {

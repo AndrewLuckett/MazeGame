@@ -2,7 +2,7 @@
 #include <iostream>
 
 int System::getRenderArr(std::queue<PolySSDat> &arr, uint & c){
-	arr = std::queue<PolySSDat>();
+	//arr = std::queue<PolySSDat>();
 
 	for (auto const& i : subsystems) {
 		i->getRenderArr(arr, c);

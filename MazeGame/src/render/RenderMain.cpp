@@ -43,6 +43,18 @@ int renderer::myinit() {
 	uint shad = CreateShader(vs, fs);
 	glUseProgram(shad);
 
+	uint vertexarray;
+	glGenVertexArrays(1, &vertexarray);
+	glBindVertexArray(vertexarray);
+	uint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	uint elementbuffer;
+	glGenBuffers(1, &elementbuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
 	return 0;
 }
 
@@ -63,29 +75,15 @@ int renderer::clearScreen() {
 uint loadedElementCount = 3;
 
 int renderer::draw() {
-	//glDrawArrays(GL_TRIANGLES,0,3);
 	glDrawElements(GL_TRIANGLES, loadedElementCount, GL_UNSIGNED_INT, 0);
 	return 0;
 }
 
 int renderer::loadPoly(PolySSDat &dat) {
-	uint vertexarray;
-	glGenVertexArrays(1, &vertexarray);
-	glBindVertexArray(vertexarray);
-
-	uint vertexbuffer;
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*dat.vertexcount*2, dat.vertices, GL_STATIC_DRAW);
 
-	uint elementbuffer;
-	glGenBuffers(1, &elementbuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 	loadedElementCount = sizeof(uint) * 3 * (dat.vertexcount - 2);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, loadedElementCount, dat.elements, GL_STATIC_DRAW);
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
 
 	return 0;
 }

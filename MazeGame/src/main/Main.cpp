@@ -27,9 +27,8 @@ int main() {
 		gameInst.getRenderArr(renderArrP, renderArrC);
 
 		renderer::clearScreen();
-
 		for (uint i = 0; i < renderArrC; i++) {
-			renderer::loadPoly(renderArrP[i]);
+			renderer::loadPoly(renderArrP[i]); //Memory leak in here????
 			renderer::draw();
 		}
 		

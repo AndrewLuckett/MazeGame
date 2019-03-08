@@ -8,6 +8,7 @@
     <ClCompile Include="src\core\GameMain.cpp" />
     <ClCompile Include="src\core\FrameCounter.cpp" />
     <ClCompile Include="src\game\MazeGame.cpp" />
+    <ClCompile Include="src\core\System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\global\Shorts.h" />

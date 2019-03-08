@@ -134,6 +134,7 @@
     <ClCompile Include="src\core\FrameCounter.cpp" />
     <ClCompile Include="src\core\GameMain.cpp" />
     <ClCompile Include="src\core\Poly.cpp" />
+    <ClCompile Include="src\core\System.cpp" />
     <ClCompile Include="src\game\MazeGame.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
     <ClCompile Include="src\render\RenderMain.cpp" />

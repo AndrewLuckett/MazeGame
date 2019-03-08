@@ -68,7 +68,7 @@ int renderer::draw() {
 	return 0;
 }
 
-int renderer::loadPoly(PolySSDat dat) {
+int renderer::loadPoly(PolySSDat &dat) {
 	uint vertexarray;
 	glGenVertexArrays(1, &vertexarray);
 	glBindVertexArray(vertexarray);

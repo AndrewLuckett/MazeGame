@@ -8,5 +8,5 @@ namespace renderer {
 	int draw();
 	int close();
 	int clearScreen();
-	int loadPoly(PolySSDat dat);
+	int loadPoly(PolySSDat &dat);
 }

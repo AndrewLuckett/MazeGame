@@ -1,20 +1,17 @@
 #pragma once
 #include "../global/Shorts.h"
 #include <iostream>
+#include <vector>
 
 struct PolySSDat { //Screen space data for poly
-	vec2* vertices;
+	std::vector<vec2> vertices;
 	uint vertexcount;
-	uint* elements;
+	std::vector<uint> elements;
 
-	PolySSDat(vec2* vert, uint vc, uint* ele) {
+	PolySSDat(std::vector<vec2> vert, uint vc, std::vector<uint> ele) {
 		vertices = vert;
 		vertexcount = vc;
 		elements = ele;
-	}
-
-	~PolySSDat() {
-		//???? Errors if I delete anything here or dont have the destructor at all
 	}
 };
 
@@ -28,5 +25,5 @@ class Poly { //Should be called block or something
 		uint vertexCount;
 		vec2 location; //Based around vertex 0
 
-		uint* triangulate();
+		std::vector<uint> triangulate();
 };

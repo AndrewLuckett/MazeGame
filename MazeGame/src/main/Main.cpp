@@ -14,10 +14,11 @@ int main() {
 	GameMain gameInst = *new GameMain();
 
 	gameInst.addSubSystem(new MazeGame());
-	//gameInst.addSubSystem(new FrameCounter());
+	gameInst.addSubSystem(new FrameCounter());
 
 	std::queue<PolySSDat> renderArr;
 	uint renderArrC = 0;
+	
 
 	/* Loop until the user closes the window */
 	while (renderer::isRunning()) {
@@ -35,6 +36,7 @@ int main() {
 			renderArr.pop();
 			renderer::draw();
 		}
+		
 
 		renderer::pushToScreen();
 		

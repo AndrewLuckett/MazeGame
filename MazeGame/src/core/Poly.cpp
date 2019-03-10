@@ -8,23 +8,23 @@ Poly::Poly(vec2 vertices[], uint vertexcount) {
 }
 
 PolySSDat Poly::getSSDat() {
-	vec2* vert = new vec2[vertexCount];
+	std::vector<vec2> vert;;
 
 	for (uint i = 0; i < vertexCount; i++) {
-		vert[i] = vertices[i];
+		vert.push_back( vertices[i]);
 	}
 
 	return PolySSDat(vert, vertexCount, triangulate());
 }
 
-uint* Poly::triangulate() {
+std::vector<uint> Poly::triangulate() {
 	//TODO: Find a better algo
 	
-	uint* out = new uint[3 * (vertexCount - 2)];
+	std::vector<uint> out;
 	for (uint i = 0; i < vertexCount - 2; i++) {
-		out[i * 3] = 0;
-		out[i * 3 + 1] = i + 1;
-		out[i * 3 + 2] = i + 2;
+		out.push_back(0);
+		out.push_back(i + 1);
+		out.push_back(i + 2);
 	}
 
 	return out;

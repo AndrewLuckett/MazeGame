@@ -80,11 +80,11 @@ int renderer::draw() {
 }
 
 int renderer::loadPoly(PolySSDat &dat) {
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*dat.vertexcount*2, dat.vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*dat.vertexcount*2, dat.vertices.data(), GL_STATIC_DRAW);
 
 	loadedElementCount = sizeof(uint) * 3 * (dat.vertexcount - 2);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, loadedElementCount, dat.elements, GL_STATIC_DRAW);
-
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, loadedElementCount, dat.elements.data(), GL_STATIC_DRAW);
+	
 	return 0;
 }
 

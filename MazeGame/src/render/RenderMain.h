@@ -1,4 +1,5 @@
 #include "../core/Poly.h"
+#include "../global/Shorts.h"
 
 namespace renderer {
 	bool isRunning();
@@ -9,4 +10,5 @@ namespace renderer {
 	int close();
 	int clearScreen();
 	int loadPoly(PolySSDat &dat);
+	rect getWindowSize();
 }

@@ -1,5 +1,5 @@
 #include "Poly.h"
-#include <iostream>
+//#include <iostream>
 
 Poly::Poly(vec2 vertices[], uint vertexcount) {
 	Poly::vertices = vertices;

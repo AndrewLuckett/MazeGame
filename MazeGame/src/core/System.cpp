@@ -1,11 +1,11 @@
 #include "System.h"
-#include <iostream>
+//#include <iostream>
 
-int System::getRenderArr(std::queue<PolySSDat> &arr, uint & c){
+int System::getRenderArr(std::queue<PolySSDat> &arr){
 	arr = std::queue<PolySSDat>();
 
 	for (auto const& i : subsystems) {
-		i->getRenderArr(arr, c);
+		i->getRenderArr(arr);
 	}
 
 	return 0;

@@ -16,9 +16,7 @@ int main() {
 	gameInst.addSubSystem(new MazeGame());
 	gameInst.addSubSystem(new FrameCounter());
 
-	std::queue<PolySSDat> renderArr;
-	uint renderArrC = 0;
-	
+	std::queue<PolySSDat> renderArr;	
 
 	/* Loop until the user closes the window */
 	while (renderer::isRunning()) {
@@ -27,7 +25,7 @@ int main() {
 		
 		gameInst.update(std::chrono::system_clock::duration());
 		
-		gameInst.getRenderArr(renderArr, renderArrC);
+		gameInst.getRenderArr(renderArr);
 		
 		renderer::clearScreen();
 

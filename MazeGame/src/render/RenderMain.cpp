@@ -1,13 +1,13 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include "../global/Shorts.h"
+#ifdef _DEBUG
 #include <iostream>
-
+#endif
 #include "RenderMain.h"
 #include "ShaderGen.h"
 
 GLFWwindow* window;
-
 
 bool renderer::isRunning() {
 	return !glfwWindowShouldClose(window);
@@ -68,6 +68,9 @@ int renderer::pushToScreen() {
 }
 
 int renderer::clearScreen() {
+	int x, y;
+	glfwGetWindowSize(window, &x, &y);
+	glViewport(0, 0, x, y);
 	glClear(GL_COLOR_BUFFER_BIT);
 	return 0;
 }
@@ -86,6 +89,12 @@ int renderer::loadPoly(PolySSDat &dat) {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, loadedElementCount, dat.elements.data(), GL_STATIC_DRAW);
 	
 	return 0;
+}
+
+rect renderer::getWindowSize(){
+	rect out;
+	glfwGetWindowSize(window, &out.x, &out.y);
+	return out;
 }
 
 int renderer::close() {

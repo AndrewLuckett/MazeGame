@@ -23,7 +23,6 @@ class Poly { //Should be called block or something
     private:
 		vec2* vertices;
 		uint vertexCount;
-		vec2 location; //Based around vertex 0
 
 		std::vector<uint> triangulate();
 };

@@ -3,7 +3,7 @@
 
 uint loadTexture(string path) {
 	int width, height, bpp;
-	stbi_set_flip_vertically_on_load(1);
+	//stbi_set_flip_vertically_on_load(1);
 	auto b = stbi_load(path.c_str(), &width, &height, &bpp, 4);
 
 	uint id;

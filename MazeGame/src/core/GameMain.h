@@ -1,7 +1,5 @@
 #pragma once
-//#include <time.h>
 #include <chrono>
-#include "Poly.h"
 #include "System.h"
 
 class GameMain : public System {

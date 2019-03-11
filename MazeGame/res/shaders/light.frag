@@ -1,7 +1,11 @@
-#version 330 core
+#version 400 core
 
-layout(location = 0) out vec4 colour;
+out vec4 colour;
+
+in vec2 texCo;
+
+uniform sampler2D texSampler;
 
 void main() {
-    colour = vec4(0.75,0.3,0.75,1.0);
+    colour = texture(texSampler,texCo);
 };

@@ -1,4 +1,3 @@
-#include <GLEW/glew.h>
 #ifdef _DEBUG
     #include <iostream>
 #endif
@@ -36,17 +35,4 @@ uint CompileShader(uint type, const string &source) {
 		glDeleteShader(id);
 	}
 	return id;
-}
-
-uint CreateShader(const string &vertexShader, const string &fragmentShader) {
-	uint prog = glCreateProgram();
-	uint vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	uint fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-
-	glAttachShader(prog, vs);
-	glAttachShader(prog, fs);
-	glLinkProgram(prog);
-	glValidateProgram(prog);
-
-	return prog;
 }

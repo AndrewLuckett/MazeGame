@@ -1,5 +1,5 @@
 #pragma once
-#include "Poly.h"
+#include "../render/Model.h"
 #include <list>
 #include <chrono>
 #include <queue>
@@ -11,7 +11,7 @@ class System {
 	    virtual int update(timesys::system_clock::duration deltaTime) = 0;
 	    virtual int fixedUpdate() = 0;
 
-		virtual int getRenderArr(std::queue<PolySSDat> &arr); //Gets SSDat for elements and returns them
+		virtual int getRenderArr(std::queue<Model> &arr); //Gets SSDat for elements and returns them
 			
 		int cleanup();
 

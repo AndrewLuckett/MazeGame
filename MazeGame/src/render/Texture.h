@@ -5,4 +5,4 @@
 #include "../global/Shorts.h"
 #include "../stb_image/stb_image.h"
 
-uint loadTexture(string path);
+uint loadTexture(string path, int type = GL_LINEAR);

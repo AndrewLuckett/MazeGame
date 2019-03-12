@@ -1,19 +1,18 @@
 #include "FrameCounter.h"
 #include <iostream>
+#include <sstream>
 
 #include "../render/Window.h"
 #include "../render/Texture.h"
 #include "../render/Vao.h"
 
-timesys::system_clock::duration sumTime;
-uint frames;
-int fps;
-Model out;
-uint test;
-const std::string textpaths[10] = { "res/textures/notes.png" };
-
 FrameCounter::FrameCounter() {
 	out = getCell();
+	for (int i = 0; i < 10; i++) {
+		std::stringstream ss;
+		ss << "res/textures/num/" << i << ".png";
+		textures[i] = loadTexture(ss.str(),GL_NEAREST);
+	}
 }
 
 int FrameCounter::update(timesys::system_clock::duration deltaTime) {
@@ -37,13 +36,10 @@ int FrameCounter::fixedUpdate() {
 }
 
 int FrameCounter::getRenderArr(std::queue<Model> &arr) {
-	//TODO: Return graphics
-	rect size = renderer::getWindowSize();
-	vec2 cellSize;
-	cellSize.x = 40.0f / size.x;
-	cellSize.y = 40.0f / size.y;
-
-	
+	//fps to string
+	//for each digit of the string
+	out.textureId = textures[fps % 10];
+	//out.transform = blah
 	arr.push(out);
 	
 	return 0;
@@ -55,7 +51,7 @@ Model FrameCounter::getCell() {
 	                        {-0.9f,0.9f},
 							{-1.0f,0.9f} };
 	std::vector<vec2> t = { {0.0f,0.0f},{1.0f,0.0f},{1.0f,1.0f},{0.0f,1.0f} };
-	return Model(createVAO(v,t), loadTexture(textpaths[0]));
+	return createVAO(v,t);
 }
 
 int FrameCounter::cleanup() {

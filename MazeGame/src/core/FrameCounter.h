@@ -1,5 +1,6 @@
 #pragma once
 #include "System.h"
+#include <array>
 #include "../render/Model.h"
 
 class FrameCounter : public System {
@@ -11,4 +12,10 @@ class FrameCounter : public System {
 		int cleanup();
     private:
 	    Model getCell();
+
+		timesys::system_clock::duration sumTime;
+		uint frames;
+		int fps;
+		Model out;
+		std::array<uint,10> textures;
 };

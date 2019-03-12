@@ -39,8 +39,6 @@ int renderer::myinit() {
 	string frsh = ParseFile("res/shaders/light.frag");
 
 	uint prog = glCreateProgram();
-	glBindAttribLocation(prog, 0, "position");
-	glBindAttribLocation(prog, 1, "coords");
 
 	uint vs = CompileShader(GL_VERTEX_SHADER, vesh);
 	uint fs = CompileShader(GL_FRAGMENT_SHADER, frsh);

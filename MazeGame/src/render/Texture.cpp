@@ -1,5 +1,6 @@
-#include "ra.h"
 #include "Texture.h"
+
+#include "../stb_image/stb_image.h"
 
 uint loadTexture(string path, int type) {
 	int width, height, bpp;

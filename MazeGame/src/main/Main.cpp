@@ -13,35 +13,15 @@ int main() {
 	renderer::myinit();
 
 	GameMain gameInst = *new GameMain();
-
 	gameInst.addSubSystem(new MazeGame());
 	gameInst.addSubSystem(new FrameCounter());
 
 	std::queue<Model> renderArr;	
 
-	std::vector<vec2> a;
-	a.push_back({ -0.5f, 0.5f });
-	a.push_back({ 0.5f, 0.5f });
-	a.push_back({ 0.5f,-0.5f });
-	a.push_back({ -0.5f,-0.5f });
-	std::vector<vec2> t;
-	t.push_back({ 0.0f, 0.0f });
-	t.push_back({ 1.0f,0.0f });
-	t.push_back({ 1.0f,1.0f });
-	t.push_back({ 0.0f,1.0f });
-	uint m = loadTexture("res/textures/t.png");
-	Model b = Model(createVAO(a,t),m);
-
 	/* Loop until the user closes the window */
 	while (renderer::isRunning()) {
-
-		//Get inputs here or in game update?
-		
 		gameInst.update(std::chrono::system_clock::duration());
-		
 		gameInst.getRenderArr(renderArr);
-		
-		renderArr.push(b);
 		
 		renderer::clearScreen();
 
@@ -53,6 +33,7 @@ int main() {
 		renderer::pushToScreen();
 		
 	}
+
 	gameInst.cleanup();
 	renderer::close();
 

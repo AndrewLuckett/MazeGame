@@ -1,8 +1,7 @@
 #pragma once
-
+#include "ra.h"
 #include <string>
 
 #include "../global/Shorts.h"
-#include "../stb_image/stb_image.h"
 
 uint loadTexture(string path, int type = GL_LINEAR);

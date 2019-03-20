@@ -12,7 +12,9 @@ typedef struct vec2 {
 	float y;
 } vec2;
 
-typedef struct vec3 : vec2 {
+typedef struct vec3 {
+	float x;
+	float y;
 	float z;
 } vec3;
 

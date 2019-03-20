@@ -14,7 +14,10 @@ MazeGame::MazeGame() {
 	t.push_back({ 1.0f,1.0f });
 	t.push_back({ 0.0f,1.0f });
 	uint m = loadTexture("res/textures/t.png");
-	b = Model(createVAO(a, t), m);
+	b = createVAO();
+	loadVertexData(b, a);
+	loadTextureCoordinates(b, t);
+	b.textureId = m;
 }
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {

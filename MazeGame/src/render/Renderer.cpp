@@ -25,7 +25,9 @@ int renderer::draw(Model &model) {
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glBindTexture(GL_TEXTURE_2D, model.textureId);
+
 	glDrawElements(GL_TRIANGLES, sizeof(uint)*model.vertexCount, GL_UNSIGNED_INT, 0);
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);

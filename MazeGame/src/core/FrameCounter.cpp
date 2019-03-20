@@ -46,12 +46,15 @@ int FrameCounter::getRenderArr(std::queue<Model> &arr) {
 }
 
 Model FrameCounter::getCell() {
+	Model out = createVAO();
 	std::vector<vec2> v = { {-1.0f,1.0f},
 	                        {-0.9f,1.0f},
 	                        {-0.9f,0.9f},
 							{-1.0f,0.9f} };
 	std::vector<vec2> t = { {0.0f,0.0f},{1.0f,0.0f},{1.0f,1.0f},{0.0f,1.0f} };
-	return createVAO(v,t);
+	loadVertexData(out, v);
+	loadTextureCoordinates(out, t);
+	return out;
 }
 
 int FrameCounter::cleanup() {

@@ -24,7 +24,7 @@ int deleteVAO(Model &model) {
 
 void loadVertexData(Model& model, std::vector<vec2> data) {
 	glBindVertexArray(model.vaoID);
-	model.vertexCount = data.size();
+	model.vertexCount = (uint) data.size();
 	model.vertexVBO = loadVec2Buffer(model, 0, data);
 
 	std::vector<uint> indices = triangulate((uint)data.size());

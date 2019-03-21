@@ -3,7 +3,7 @@
 #include "ra.h"
 #include "../global/Shorts.h"
 
-namespace renderer {
+namespace window {
 	
 
 	bool isRunning();
@@ -12,4 +12,5 @@ namespace renderer {
 	int close();
 	rect getWindowSize();
 	GLFWwindow* getWindow();
+	uint getProgramID();
 }

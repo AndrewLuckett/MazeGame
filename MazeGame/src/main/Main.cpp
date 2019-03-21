@@ -4,22 +4,21 @@
 #include "../core/GameMain.h"
 #include "../core/FrameCounter.h"
 #include "../game/MazeGame.h"
-#include "../render/Texture.h"
-#include "../render/Vao.h"
 #include <queue>
 
 int main() {
-	renderer::init("Maze Game - Andrew Luckett 2019");
-	renderer::myinit();
+	window::init("Maze Game - Andrew Luckett 2019");
+	window::myinit();
 
-	GameMain gameInst = *new GameMain();
-	gameInst.addSubSystem(new MazeGame());
-	gameInst.addSubSystem(new FrameCounter());
+	GameMain gameInst = *new GameMain(); //Top level system
 
-	std::queue<Model> renderArr;	
+	gameInst.addSubSystem(new FrameCounter()); //Comes first to fraw on top
+	gameInst.addSubSystem(new MazeGame()); //The game
+
+	std::queue<Model> renderArr; //Render queue
 
 	/* Loop until the user closes the window */
-	while (renderer::isRunning()) {
+	while (window::isRunning()) {
 		gameInst.update(std::chrono::system_clock::duration());
 		gameInst.getRenderArr(renderArr);
 		
@@ -35,7 +34,7 @@ int main() {
 	}
 
 	gameInst.cleanup();
-	renderer::close();
+	window::close();
 
 	return 0;
 }

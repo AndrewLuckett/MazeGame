@@ -4,25 +4,27 @@
 #endif
 #include "Window.h"
 #include "ShaderGen.h"
+#include "Renderer.h"
 
-GLFWwindow* window;
+GLFWwindow* windowPane;
+uint programID;
 
-bool renderer::isRunning() {
-	return !glfwWindowShouldClose(window);
+bool window::isRunning() {
+	return !glfwWindowShouldClose(windowPane);
 }
 
-int renderer::init(const char windowTitle[]) {
+int window::init(const char windowTitle[]) {
 	/* Initialize the library */
 	if (!glfwInit()) return -2;
 
-	window = glfwCreateWindow(1280, 960, windowTitle, NULL, NULL);
-	if (!window) {
+	windowPane = glfwCreateWindow(1280, 960, windowTitle, NULL, NULL);
+	if (!windowPane) {
 		glfwTerminate();
 		return -2;
 	}
 
 	/* Make the window's context current */
-	glfwMakeContextCurrent(window);
+	glfwMakeContextCurrent(windowPane);
 
 	if (glewInit() != GLEW_OK) return -3;
 
@@ -33,36 +35,42 @@ int renderer::init(const char windowTitle[]) {
 	return 0;
 }
 
-int renderer::myinit() {
+int window::myinit() {
 	//glfwSwapInterval(0); //No vsync
 	string vesh = ParseFile("res/shaders/light.vert");
 	string frsh = ParseFile("res/shaders/light.frag");
 
-	uint prog = glCreateProgram();
+	programID = glCreateProgram();
 
 	uint vs = CompileShader(GL_VERTEX_SHADER, vesh);
 	uint fs = CompileShader(GL_FRAGMENT_SHADER, frsh);
 
-	glAttachShader(prog, vs);
-	glAttachShader(prog, fs);
-	
-	glLinkProgram(prog);
-	
-	glUseProgram(prog);
+	glAttachShader(programID, vs);
+	glAttachShader(programID, fs);
+
+	glLinkProgram(programID);
+
+	glUseProgram(programID);
+	renderer::init();
+
 	return 0;
 }
 
-rect renderer::getWindowSize(){
+rect window::getWindowSize(){
 	rect out;
-	glfwGetWindowSize(window, &out.x, &out.y);
+	glfwGetWindowSize(windowPane, &out.x, &out.y);
 	return out;
 }
 
-GLFWwindow * renderer::getWindow(){
-	return window;
+GLFWwindow * window::getWindow(){
+	return windowPane;
 }
 
-int renderer::close() {
+uint window::getProgramID(){
+	return programID;
+}
+
+int window::close() {
 	glfwTerminate();
 	return 0;
 }

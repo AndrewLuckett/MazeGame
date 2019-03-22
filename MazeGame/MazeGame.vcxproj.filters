@@ -12,6 +12,7 @@
     <ClCompile Include="src\render\Window.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
     <ClCompile Include="src\render\Texture.cpp" />
+    <ClCompile Include="src\global\Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\global\Shorts.h" />
@@ -27,5 +28,6 @@
     <ClInclude Include="src\stb_image\stb_image.h" />
     <ClInclude Include="src\render\Texture.h" />
     <ClInclude Include="src\render\Model.h" />
+    <ClInclude Include="src\global\Matrix.h" />
   </ItemGroup>
 </Project>

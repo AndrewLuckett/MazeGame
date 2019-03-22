@@ -1,5 +1,6 @@
 #pragma once
 #include "../global/Shorts.h"
+#include "../global/Matrix.h"
 #include <vector>
 
 typedef struct Model {
@@ -9,9 +10,8 @@ typedef struct Model {
 	uint indicesVBO;
 	uint textureCoordsVBO;
 
-	vec3 matrixa = { 1.0f, 0.0f, 0.0f }; //Top row of the transform matrix
-	vec3 matrixb = { 0.0f, 1.0f, 0.0f }; //Second row of the transform matrix
-	//The third row is ommited because it is const as { 0.0f , 0.0f , 1.0f }
+	TransMatrix transform;
+
 	uint textureId;
 
 	Model() {
@@ -25,9 +25,7 @@ typedef struct Model {
 
 /*
 * VAO
-* Element buffer : Indices
+* Element buffer : IndicesArray
 * 0 : VertexArray
 * 1 : TextureCoordinateArray
-
-
 */

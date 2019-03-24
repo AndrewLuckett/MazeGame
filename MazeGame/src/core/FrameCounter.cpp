@@ -1,7 +1,6 @@
 #include "FrameCounter.h"
-#include <iostream>
 #include <sstream>
-
+#include <cmath>
 #include "../render/Window.h"
 #include "../render/Texture.h"
 #include "../render/Vao.h"
@@ -27,8 +26,6 @@ int FrameCounter::fixedUpdate() {
 		fps = (frames * 1000) / ms;
 	}
 
-	std::cout << fps << std::endl;
-
 	frames = 0;
 	sumTime = timesys::system_clock::duration();
 
@@ -36,27 +33,40 @@ int FrameCounter::fixedUpdate() {
 }
 
 int FrameCounter::getRenderArr(std::queue<Model> &arr) {
-	//fps to string
-	//for each digit of the string
-	out.textureId = textures[fps % 10];
-	//out.transform = blah
-	arr.push(out);
-	
+	int num = fps;
+	std::vector<int> digits;
+	while (num > 0) {
+		digits.push_back(num % 10);
+		num /= 10;
+	}
+
+	float width = 30.0f / window::getWindowSize().x; //30 pixels wide
+	float height = 30.0f / window::getWindowSize().y; //30 pixels tall
+	float gap = width/2;
+
+	for (int i = 0; i < digits.size(); i++) {
+		out.transform.top = { width, 0.0f, (width+gap)*i - 1.0f + gap };
+		out.transform.mid = { 0.0f, height, 1.0f-height };
+
+		out.textureId = textures[digits[digits.size()-(1+i)]];
+
+		arr.push(out);
+	}
+
 	return 0;
 }
 
 Model FrameCounter::getCell() {
 	Model out = createVAO();
-	std::vector<vec2> v = { {-0.1f, 0.1f},
-	                        { 0.1f, 0.1f},
-	                        { 0.1f,-0.1f},
-							{-0.1f,-0.1f} };
+	std::vector<vec2> v = { {-1.0f, 1.0f},
+	                        { 1.0f, 1.0f},
+	                        { 1.0f,-1.0f},
+							{-1.0f,-1.0f} }; //100% size
 	std::vector<vec2> t = { {0.0f,0.0f},{1.0f,0.0f},{1.0f,1.0f},{0.0f,1.0f} };
 	loadVertexData(out, v);
 	loadTextureCoordinates(out, t);
 
-	out.matrixa = { 5.0f, 0.0f, 0.4f };
-	out.matrixb = { 0.0f, 5.0f, 0.0f };
+	
 
 	return out;
 }

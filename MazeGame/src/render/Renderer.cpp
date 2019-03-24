@@ -45,8 +45,8 @@ int renderer::draw(Model &model) {
 	glEnableVertexAttribArray(1);
 	glBindTexture(GL_TEXTURE_2D, model.textureId);
 
-	loadVec3(mataLoc, model.matrixa);
-	loadVec3(matbLoc, model.matrixb);
+	loadVec3(mataLoc, model.transform.top);
+	loadVec3(matbLoc, model.transform.mid);
 
 	glDrawElements(GL_TRIANGLES, sizeof(uint)*model.vertexCount, GL_UNSIGNED_INT, 0);
 

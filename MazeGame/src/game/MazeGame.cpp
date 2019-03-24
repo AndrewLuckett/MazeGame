@@ -1,9 +1,24 @@
 #include "MazeGame.h"
-#include "../core/Poly.h"
-#include "../global/Shapes.h"
+#include "../render/Texture.h"
+#include "../render/Vao.h"
 
-Poly test = Poly(shapes::SQUARE, 4);
-Poly t2 = Poly(shapes::PENTAGON, 5);
+MazeGame::MazeGame() {
+	std::vector<vec2> a;
+	a.push_back({ -0.5f, 0.5f });
+	a.push_back({ 0.5f, 0.5f });
+	a.push_back({ 0.5f,-0.5f });
+	a.push_back({ -0.5f,-0.5f });
+	std::vector<vec2> t;
+	t.push_back({ 0.0f, 0.0f });
+	t.push_back({ 1.0f,0.0f });
+	t.push_back({ 1.0f,1.0f });
+	t.push_back({ 0.0f,1.0f });
+	uint m = loadTexture("res/textures/t.png");
+	b = createVAO();
+	loadVertexData(b, a);
+	loadTextureCoordinates(b, t);
+	b.textureId = m;
+}
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {
 	return 0;
@@ -13,8 +28,7 @@ int MazeGame::fixedUpdate() {
 	return 0;
 }
 
-int MazeGame::getRenderArr(std::queue<PolySSDat> &arr, uint &c) {
-	arr.push(test.getSSDat());
-	arr.push(t2.getSSDat());
+int MazeGame::getRenderArr(std::queue<Model> &arr) {
+	arr.push(b);
 	return 0;
 }

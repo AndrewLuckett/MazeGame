@@ -111,6 +111,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw32;$(ProjectDir)lib\glew32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,28 +130,39 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\glfw64;$(ProjectDir)lib\glew64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\FrameCounter.cpp" />
     <ClCompile Include="src\core\GameMain.cpp" />
-    <ClCompile Include="src\core\Poly.cpp" />
     <ClCompile Include="src\core\System.cpp" />
     <ClCompile Include="src\game\MazeGame.cpp" />
+    <ClCompile Include="src\global\Matrix.cpp" />
     <ClCompile Include="src\main\Main.cpp" />
-    <ClCompile Include="src\render\RenderMain.cpp" />
+    <ClCompile Include="src\render\Renderer.cpp" />
+    <ClCompile Include="src\render\Texture.cpp" />
+    <ClCompile Include="src\render\Window.cpp" />
     <ClCompile Include="src\render\ShaderGen.cpp" />
+    <ClCompile Include="src\render\Vao.cpp" />
+    <ClCompile Include="src\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\FrameCounter.h" />
     <ClInclude Include="src\core\GameMain.h" />
-    <ClInclude Include="src\core\Poly.h" />
+    <ClInclude Include="src\global\Matrix.h" />
+    <ClInclude Include="src\render\Model.h" />
     <ClInclude Include="src\core\System.h" />
     <ClInclude Include="src\game\MazeGame.h" />
-    <ClInclude Include="src\global\Shapes.h" />
     <ClInclude Include="src\global\Shorts.h" />
-    <ClInclude Include="src\render\RenderMain.h" />
+    <ClInclude Include="src\render\ra.h" />
+    <ClInclude Include="src\render\Renderer.h" />
+    <ClInclude Include="src\render\Texture.h" />
+    <ClInclude Include="src\render\Window.h" />
     <ClInclude Include="src\render\ShaderGen.h" />
+    <ClInclude Include="src\render\Vao.h" />
+    <ClInclude Include="src\stb_image\stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
-#include <GLEW/glew.h>
-
-#include <iostream>
+#ifdef _DEBUG
+    #include <iostream>
+#endif
 #include <fstream>
 
 #include "ShaderGen.h"
@@ -28,22 +28,11 @@ uint CompileShader(uint type, const string &source) {
 		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
 		char* message = (char*)alloca(length * sizeof(char));
 		glGetShaderInfoLog(id, length, &length, message);
+#ifdef _DEBUG
 		std::cout << "Failed to compile :" << type << std::endl;
 		std::cout << message << std::endl;
+#endif
 		glDeleteShader(id);
 	}
 	return id;
-}
-
-uint CreateShader(const string &vertexShader, const string &fragmentShader) {
-	uint prog = glCreateProgram();
-	uint vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	uint fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-
-	glAttachShader(prog, vs);
-	glAttachShader(prog, fs);
-	glLinkProgram(prog);
-	glValidateProgram(prog);
-
-	return prog;
 }

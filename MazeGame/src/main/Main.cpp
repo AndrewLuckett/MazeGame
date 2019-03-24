@@ -1,48 +1,40 @@
 #include "../global/Shorts.h"
-#include "../render/RenderMain.h"
-#include "../core/Poly.h"
+#include "../render/Window.h"
+#include "../render/Renderer.h"
 #include "../core/GameMain.h"
 #include "../core/FrameCounter.h"
 #include "../game/MazeGame.h"
-
 #include <queue>
 
 int main() {
-	renderer::init("Maze Game - Andrew Luckett 2019");
-	renderer::myinit();
+	window::init("Maze Game - Andrew Luckett 2019");
+	window::myinit();
 
-	GameMain gameInst = *new GameMain();
+	GameMain gameInst = *new GameMain(); //Top level system
 
-	gameInst.addSubSystem(new MazeGame());
-	gameInst.addSubSystem(new FrameCounter());
+	gameInst.addSubSystem(new FrameCounter()); //Comes first to fraw on top
+	gameInst.addSubSystem(new MazeGame()); //The game
 
-	std::queue<PolySSDat> renderArr;
-	uint renderArrC = 0;
-	
+	std::queue<Model> renderArr; //Render queue
 
 	/* Loop until the user closes the window */
-	while (renderer::isRunning()) {
-
-		//Get inputs here or in game update?
-		
+	while (window::isRunning()) {
 		gameInst.update(std::chrono::system_clock::duration());
-		
-		gameInst.getRenderArr(renderArr, renderArrC);
+		gameInst.getRenderArr(renderArr);
 		
 		renderer::clearScreen();
 
 		while(renderArr.empty() == false){
-			renderer::loadPoly(renderArr.front());
+			renderer::draw(renderArr.front());
 			renderArr.pop();
-			renderer::draw();
 		}
 		
-
 		renderer::pushToScreen();
 		
 	}
+
 	gameInst.cleanup();
-	renderer::close();
+	window::close();
 
 	return 0;
 }

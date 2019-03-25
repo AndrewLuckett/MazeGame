@@ -10,6 +10,6 @@ class GameMain : public System {
     private:
 	    timesys::system_clock::time_point fuLastRun;
 	    timesys::system_clock::time_point suLastRun;
-	    timesys::system_clock::duration fuTime = timesys::milliseconds(200);
+	    timesys::system_clock::duration fuTime = timesys::milliseconds(100);
 	    timesys::system_clock::duration deltaTime;
 };

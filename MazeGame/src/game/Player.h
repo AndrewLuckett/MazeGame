@@ -12,7 +12,7 @@ class Player : public System {
 	    Model base;
 	    GameWorld* world;
 	    float facingAngle = 0;
-	    float velocity = 0.07f;
+	    float velocity = 0.05f;
 	    float radius = 0.1f;
-		float spriteScale = 0.5f;
+		float spriteScale = 0.8f;
 };

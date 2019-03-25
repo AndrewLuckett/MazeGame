@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "../global/Shorts.h"
-#include "WorldObject.h"
 #include "../core/System.h"
 
 class GameWorld : public System {

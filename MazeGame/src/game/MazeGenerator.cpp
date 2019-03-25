@@ -13,7 +13,7 @@ rect generateMaze(std::vector<std::vector<int>>& out, rect size){
 				out[i].push_back(1);
 			}
 			else {
-				out[i].push_back(std::rand() % 2);
+				out[i].push_back(std::rand() % 2); //replace with out[i].push_back(1); to see the path carving
 			}
 		}
 	} //Generate random noise
@@ -37,16 +37,45 @@ rect generateMaze(std::vector<std::vector<int>>& out, rect size){
 	} //Add safe space for player
 
 	int location = std::rand() % 4;
-	rect exitLocation = { 10,10 };
+	rect exitLocation = { size.x/10,size.y/10 };
+	rect axis = { 1,1 };
 	if (location >= 2) {
-		exitLocation.x = size.x - 10;
+		exitLocation.x = size.x - size.x/10;
+		axis.x = -1;
 	}
 	if (location % 2 == 0) {
-		exitLocation.y = size.y - 10;
+		exitLocation.y = size.y - size.y/10;
+		axis.y = -1;
 	} //Select exit position
+	std::cout << location << std::endl;
 
 
+
+	rect current = { size.x / 2,size.y / 2 };
+	for (int i = 0; i < size.y / 4; i++) {
+		current.y += axis.y; //Up
+		out[current.x][current.y] = 0;
+	}
+	for (int i = 0; i < size.x / 4; i++) {
+		current.x += axis.x; //Right
+		out[current.x][current.y] = 0;
+	}
+	for (int i = 0; i < size.y / 2; i++) {
+		current.y -= axis.y; //Down
+		out[current.x][current.y] = 0;
+	}
+	for (int i = 0; i < size.x / 2; i++) {
+		current.x -= axis.x; //Left
+		out[current.x][current.y] = 0;
+	}
+	while (current.x != exitLocation.x && current.y != exitLocation.y) { //May continue beyond vector size in odd maze 'size' values
+		current.x -= axis.x; //Zig
+		out[current.x][current.y] = 0;
+		current.y -= axis.y; //Zag
+		out[current.x][current.y] = 0;
+	} //Needs a rework
 	//Carve a path to exit
+	//Forms a spiral shape
 
 	return exitLocation;
 }

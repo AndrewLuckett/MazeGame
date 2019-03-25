@@ -7,7 +7,7 @@
 
 MazeGame::MazeGame() {
 	
-	world = GameWorld({ 50,50 });
+	world = GameWorld({ 100,100 });
 	player = Player(&world);
 
 	world.generateNewLevel();

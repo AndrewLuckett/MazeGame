@@ -1,34 +1,51 @@
 #include "MazeGame.h"
 #include "../render/Texture.h"
 #include "../render/Vao.h"
+#include "../render/Window.h"
+#include "../core/input.h"
+#include <iostream>
 
 MazeGame::MazeGame() {
-	std::vector<vec2> a;
-	a.push_back({ -0.5f, 0.5f });
-	a.push_back({ 0.5f, 0.5f });
-	a.push_back({ 0.5f,-0.5f });
-	a.push_back({ -0.5f,-0.5f });
-	std::vector<vec2> t;
-	t.push_back({ 0.0f, 0.0f });
-	t.push_back({ 1.0f,0.0f });
-	t.push_back({ 1.0f,1.0f });
-	t.push_back({ 0.0f,1.0f });
-	uint m = loadTexture("res/textures/t.png");
-	b = createVAO();
-	loadVertexData(b, a);
-	loadTextureCoordinates(b, t);
-	b.textureId = m;
+	
+	world = GameWorld({ 20,20 });
+	player = Player(&world);
+
+	zoom = 0.2f;
 }
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {
+	player.update(deltaTime);
+	
 	return 0;
 }
 
 int MazeGame::fixedUpdate() {
+	player.fixedUpdate();
 	return 0;
 }
 
 int MazeGame::getRenderArr(std::queue<Model> &arr) {
-	arr.push(b);
+	rect windowSize = window::getWindowSize();
+	float aspect = windowSize.x * 1.0f / windowSize.y;
+	TransMatrix scale;
+	scale.top = { zoom, 0.0f, 0.0f };
+	scale.mid = { 0.0f, zoom*aspect , 0.0f };
+
+	std::queue<Model> sub;
+
+	world.getRenderArr(sub);
+
+	player.getRenderArr(sub);
+
+	while (!sub.empty()) {
+		arr.push(scaleModel(sub.front(), scale));
+		sub.pop();
+	}
+	
 	return 0;
+}
+
+Model MazeGame::scaleModel(Model in, TransMatrix scale){
+	in.transform = matrixMult(scale, in.transform);
+	return in;
 }

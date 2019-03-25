@@ -24,7 +24,7 @@ int main() {
 		
 		renderer::clearScreen();
 
-		while(renderArr.empty() == false){
+		while(!renderArr.empty()){
 			renderer::draw(renderArr.front());
 			renderArr.pop();
 		}

@@ -87,7 +87,7 @@ void GameWorld::trymovePlayer(vec2 dist) {
 	int end = (int)dist.x + 1;
 	for (int i = 0; i < end; i++) {
 		playerPosition.x += dist.x / end;
-		if (world[round(playerPosition.x)][round(playerPosition.y)] == 1) {
+		if (world[(int)round(playerPosition.x)][(int)round(playerPosition.y)] == 1) {
 			playerPosition.x -= dist.x / end;
 		}
 	}
@@ -95,7 +95,7 @@ void GameWorld::trymovePlayer(vec2 dist) {
 	end = (int)dist.y + 1;
 	for (int i = 0; i < end; i++) {
 		playerPosition.y += dist.y / end;
-		if (world[round(playerPosition.x)][round(playerPosition.y)] == 1) {
+		if (world[(int)round(playerPosition.x)][(int)round(playerPosition.y)] == 1) {
 			playerPosition.y -= dist.y / end;
 		}
 	}

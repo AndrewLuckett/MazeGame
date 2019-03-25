@@ -5,7 +5,7 @@
 
 rect generateMaze(std::vector<std::vector<int>>& out, rect size){
 	out = std::vector<std::vector<int>>();
-	std::srand(std::time(nullptr));
+	std::srand((uint)std::time(nullptr));
 	for (int i = 0; i < size.x; i++) {
 		out.push_back(std::vector<int>());
 		for (int j = 0; j < size.x; j++) {

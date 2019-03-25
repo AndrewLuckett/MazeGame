@@ -1,5 +1,7 @@
 #include "GameWorld.h"
+#ifdef _DEBUG
 #include <iostream>
+#endif
 #include "Sprite.h"
 #include "../render/Texture.h"
 #include "../render/Vao.h"
@@ -64,25 +66,32 @@ void GameWorld::setPlayerAngle(float angle){
 	playerAngle = angle;
 }
 
-void GameWorld::trymovePlayer(vec2 dist){
+void GameWorld::trymovePlayer(vec2 dist) {
+
 	int end = (int)dist.x + 1;
 	for (int i = 0; i < end; i++) {
-		playerPosition.x += dist.x/end;
+		playerPosition.x += dist.x / end;
 		if (world[round(playerPosition.x)][round(playerPosition.y)] == 1) {
-			playerPosition.x -= dist.x/end;
+			playerPosition.x -= dist.x / end;
 		}
 	}
-	
+
 	end = (int)dist.y + 1;
 	for (int i = 0; i < end; i++) {
-		playerPosition.y += dist.y/end;
+		playerPosition.y += dist.y / end;
 		if (world[round(playerPosition.x)][round(playerPosition.y)] == 1) {
-			playerPosition.y -= dist.y/end;
+			playerPosition.y -= dist.y / end;
 		}
 	}
 }
 
 void GameWorld::forcemovePlayer(vec2 dist) {
 	playerPosition.x += dist.x;
+	if (playerPosition.x < 0 || playerPosition.x > worldSize.x - 1) {
+		playerPosition.x -= dist.x;
+	}
 	playerPosition.y += dist.y;
+	if (playerPosition.y < 0 || playerPosition.y > worldSize.y - 1) {
+		playerPosition.y -= dist.y;
+	}
 }

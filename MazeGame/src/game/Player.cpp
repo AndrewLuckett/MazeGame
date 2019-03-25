@@ -34,7 +34,13 @@ int Player::update(timesys::system_clock::duration deltaTime){
 	}
 	dir.x *= (int)timesys::duration_cast<timesys::milliseconds>(deltaTime).count() * velocity;
 	dir.y *= (int)timesys::duration_cast<timesys::milliseconds>(deltaTime).count() * velocity;
-	world->trymovePlayer(dir);
+
+	if (isKeyDown(GLFW_KEY_SPACE)) {
+		world->forcemovePlayer(dir);
+	}
+	else {
+		world->trymovePlayer(dir);
+	}
 
 	world->setPlayerAngle(facingAngle);
 

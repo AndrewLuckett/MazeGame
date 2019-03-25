@@ -16,6 +16,7 @@ class GameWorld : public System {
 		void generateNewLevel();
 		void setPlayerAngle(float angle);
 		void trymovePlayer(vec2 dist);
+		void forcemovePlayer(vec2 dist);
 
     private:
 		float playerAngle;

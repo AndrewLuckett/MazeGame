@@ -14,5 +14,5 @@ class Player : public System {
 	    float facingAngle = 0;
 	    float velocity = 0.07f;
 	    float radius = 0.1f;
-		float spriteScale = 0.2f;
+		float spriteScale = 0.5f;
 };

@@ -12,6 +12,7 @@ class MazeGame : public System {
 	    int fixedUpdate();
 	    int getRenderArr(std::queue<Model> &arr);
     private:
+		int levelsCompleted = 0;
 		Model scaleModel(Model in, TransMatrix scale);
 		Player player = Player(nullptr);
 		float zoom = 1.0f;

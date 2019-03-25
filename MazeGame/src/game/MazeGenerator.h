@@ -2,4 +2,5 @@
 #include <vector>
 #include "../global/Shorts.h"
 
-void generateMaze(std::vector<std::vector<int>>& out, rect size);
+rect generateMaze(std::vector<std::vector<int>>& out, rect size);
+void smoothMaze(std::vector<std::vector<int>>& out);

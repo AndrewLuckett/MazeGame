@@ -22,11 +22,13 @@ class GameWorld : public System {
 		float playerAngle;
 		vec2 playerPosition;
 		float playerLightDist = 5.0f;
+
 		rect worldSize;
 		bool levelLoaded = false;
 	    std::vector<std::vector<int>> world;
-		std::vector<WorldObject> items;
+		rect exitLocation;
 
 		Model lightModel;
 		Model blockModel;
+		Model exitModel;
 };

@@ -7,7 +7,7 @@
 
 MazeGame::MazeGame() {
 	
-	world = GameWorld({ 100,100 });
+	world = GameWorld({ 50,50 });
 	player = Player(&world);
 
 	world.generateNewLevel();
@@ -17,12 +17,17 @@ MazeGame::MazeGame() {
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {
 	player.update(deltaTime);
-	
+	world.update(deltaTime);
+	if (!world.isLevelLoaded()) {
+		levelsCompleted += 1;
+		world.generateNewLevel();
+	}
 	return 0;
 }
 
 int MazeGame::fixedUpdate() {
 	player.fixedUpdate();
+	world.fixedUpdate();
 	return 0;
 }
 

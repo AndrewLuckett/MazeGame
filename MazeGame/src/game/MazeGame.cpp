@@ -7,10 +7,12 @@
 
 MazeGame::MazeGame() {
 	
-	world = GameWorld({ 20,20 });
+	world = GameWorld({ 100,100 });
 	player = Player(&world);
 
-	zoom = 0.2f;
+	world.generateNewLevel();
+
+	zoom = 0.15f;
 }
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {

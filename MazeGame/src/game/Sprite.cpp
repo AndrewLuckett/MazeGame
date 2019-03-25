@@ -22,5 +22,5 @@ void createGenericModel() {
 	loadVertexData(gen, a); //Load vertex data in base model
 	loadTextureCoordinates(gen, t); //Load texture coords into base model
 
-	gen.textureId = loadTexture("res/textures/white.png");// , GL_NEAREST);
+	gen.textureId = loadTexture("res/textures/white.png", GL_NEAREST);
 }

@@ -18,6 +18,7 @@
     <ClCompile Include="src\game\GameWorld.cpp" />
     <ClCompile Include="src\core\input.cpp" />
     <ClCompile Include="src\game\Player.cpp" />
+    <ClCompile Include="src\game\MazeGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\global\Shorts.h" />
@@ -39,5 +40,6 @@
     <ClInclude Include="src\game\WorldObject.h" />
     <ClInclude Include="src\core\input.h" />
     <ClInclude Include="src\game\Player.h" />
+    <ClInclude Include="src\game\MazeGenerator.h" />
   </ItemGroup>
 </Project>

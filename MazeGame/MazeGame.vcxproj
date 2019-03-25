@@ -141,6 +141,7 @@
     <ClCompile Include="src\core\System.cpp" />
     <ClCompile Include="src\game\GameWorld.cpp" />
     <ClCompile Include="src\game\MazeGame.cpp" />
+    <ClCompile Include="src\game\MazeGenerator.cpp" />
     <ClCompile Include="src\game\Player.cpp" />
     <ClCompile Include="src\game\Sprite.cpp" />
     <ClCompile Include="src\game\WorldObject.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="src\core\GameMain.h" />
     <ClInclude Include="src\core\input.h" />
     <ClInclude Include="src\game\GameWorld.h" />
+    <ClInclude Include="src\game\MazeGenerator.h" />
     <ClInclude Include="src\game\Player.h" />
     <ClInclude Include="src\game\Sprite.h" />
     <ClInclude Include="src\game\WorldObject.h" />

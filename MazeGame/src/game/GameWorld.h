@@ -20,7 +20,7 @@ class GameWorld : public System {
     private:
 		float playerAngle;
 		vec2 playerPosition;
-		float playerLightDist = 3.0f;
+		float playerLightDist = 5.0f;
 		rect worldSize;
 		bool levelLoaded = false;
 	    std::vector<std::vector<int>> world;

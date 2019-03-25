@@ -16,7 +16,7 @@ vec2 getCursorLocation(){
 
 bool isKeyDown(int keynum){
 	checkWindow();
-	int state = glfwGetKey(win, GLFW_KEY_E);
+	int state = glfwGetKey(win, keynum);
 	if (state == GLFW_PRESS) {
 		return true;
 	}

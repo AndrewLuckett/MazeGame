@@ -10,9 +10,9 @@ int main() {
 	window::init("Maze Game - Andrew Luckett 2019");
 	window::myinit();
 
-	GameMain gameInst = *new GameMain(); //Top level system
+	GameMain gameInst = GameMain(); //Top level system
 
-	gameInst.addSubSystem(new FrameCounter()); //Comes first to fraw on top
+	gameInst.addSubSystem(new FrameCounter()); //Comes first to draw on top
 	gameInst.addSubSystem(new MazeGame()); //The game
 
 	std::queue<Model> renderArr; //Render queue

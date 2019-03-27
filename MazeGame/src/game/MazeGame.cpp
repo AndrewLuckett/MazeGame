@@ -3,7 +3,6 @@
 #include "../render/Vao.h"
 #include "../render/Window.h"
 #include "../core/input.h"
-#include <iostream>
 
 MazeGame::MazeGame() {
 	

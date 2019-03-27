@@ -1,7 +1,6 @@
 #include "MazeGenerator.h"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 rect generateMaze(std::vector<std::vector<int>>& out, rect size){
 	out = std::vector<std::vector<int>>();
@@ -47,7 +46,6 @@ rect generateMaze(std::vector<std::vector<int>>& out, rect size){
 		exitLocation.y = size.y - size.y/10;
 		axis.y = -1;
 	} //Select exit position
-	std::cout << location << std::endl;
 
 
 

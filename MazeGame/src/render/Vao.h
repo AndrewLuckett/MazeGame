@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ra.h"
 #include "../global/Shorts.h"
 #include <vector>
 #include "Model.h"

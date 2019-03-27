@@ -1,5 +1,4 @@
 #include "System.h"
-//#include <iostream>
 
 int System::getRenderArr(std::queue<Model> &arr){
 	for (auto const& i : subsystems) {

@@ -1,3 +1,4 @@
+#include "ra.h"
 #ifdef _DEBUG
     #include <iostream>
 #endif

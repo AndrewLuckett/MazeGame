@@ -1,7 +1,4 @@
 #include "GameWorld.h"
-#ifdef _DEBUG
-#include <iostream>
-#endif
 #include "Sprite.h"
 #include "../render/Texture.h"
 #include "../render/Vao.h"

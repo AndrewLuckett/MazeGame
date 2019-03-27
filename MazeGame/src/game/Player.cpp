@@ -2,7 +2,6 @@
 #include "../core/input.h"
 #include "Sprite.h"
 #include "../render/Texture.h"
-#include <iostream>
 
 Player::Player(GameWorld* world){
 	this->world = world;
@@ -32,8 +31,10 @@ int Player::update(timesys::system_clock::duration deltaTime){
 	if (isKeyDown(GLFW_KEY_A)) {
 		dir.x -= 0.1f;
 	}
-	dir.x *= (int)timesys::duration_cast<timesys::milliseconds>(deltaTime).count() * velocity;
-	dir.y *= (int)timesys::duration_cast<timesys::milliseconds>(deltaTime).count() * velocity;
+
+	float dtms = (int)timesys::duration_cast<timesys::nanoseconds>(deltaTime).count() * 0.000001f; //Deltatime in milliseconds
+	dir.x *= dtms * velocity;
+	dir.y *= dtms * velocity;
 
 	if (isKeyDown(GLFW_KEY_SPACE)) {
 		world->forcemovePlayer(dir);

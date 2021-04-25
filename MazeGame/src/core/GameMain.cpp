@@ -4,6 +4,7 @@
 GameMain::GameMain() { //perform once
 	suLastRun = timesys::system_clock::now();
 	fuLastRun = timesys::system_clock::time_point::time_point();
+	deltaTime = suLastRun - fuLastRun; //Init var to keep compiler happy
 }
 
 int GameMain::update(timesys::system_clock::duration deltaTime) { //Perform every frame
@@ -21,12 +22,3 @@ int GameMain::update(timesys::system_clock::duration deltaTime) { //Perform ever
 
 	return 0;
 }
-
-int GameMain::fixedUpdate() { //Perform every fixed amount of time
-	//std::cout << "Beep" << std::endl;
-	for (auto const& i : subsystems) {
-		i->fixedUpdate();
-	}
-	return 0;
-}
-

@@ -6,7 +6,6 @@ class GameMain : public System {
     public:
 		GameMain();
 	    int update(timesys::system_clock::duration deltaTime);
-	    int fixedUpdate();
     private:
 	    timesys::system_clock::time_point fuLastRun;
 	    timesys::system_clock::time_point suLastRun;

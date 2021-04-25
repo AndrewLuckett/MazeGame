@@ -5,13 +5,11 @@
 #include "MazeGenerator.h"
 #include <cmath>
 
-GameWorld::GameWorld(){
-	GameWorld({ 20,20 });
-}
-
 GameWorld::GameWorld(rect scale){
 	worldSize = scale;
 	playerPosition = { worldSize.x/2.0f, worldSize.y/2.0f };
+	playerAngle = 0;
+	exitLocation = { 0,0 };
 
 	lightModel = getGenericModel();
 	loadVertexData(lightModel, { {-0.9f,0.9f},{0.9f,0.9f},{0.2f,0.0f},{-0.2f,0.0f} });
@@ -30,10 +28,6 @@ int GameWorld::update(timesys::system_clock::duration deltaTime) {
 			levelLoaded = false;
 		}
 	}
-	return 0;
-}
-
-int GameWorld::fixedUpdate() {
 	return 0;
 }
 

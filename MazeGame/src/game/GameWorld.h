@@ -5,10 +5,9 @@
 
 class GameWorld : public System {
     public:
-		GameWorld();
+		GameWorld() : GameWorld({ 20,20 }) {}
 	    GameWorld(rect scale);
 		int update(timesys::system_clock::duration deltaTime);
-		int fixedUpdate();
 		int getRenderArr(std::queue<Model> &arr);
 
 		bool isLevelLoaded() { return levelLoaded; }

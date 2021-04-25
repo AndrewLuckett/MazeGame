@@ -48,10 +48,6 @@ int Player::update(timesys::system_clock::duration deltaTime){
 	return 0;
 }
 
-int Player::fixedUpdate(){
-	return 0;
-}
-
 int Player::getRenderArr(std::queue<Model>& arr){
 	base.transform.top = { cos(facingAngle)*spriteScale, -sin(facingAngle)*spriteScale, 0.0f };
 	base.transform.mid = { sin(facingAngle)*spriteScale, cos(facingAngle)*spriteScale, 0.0f };

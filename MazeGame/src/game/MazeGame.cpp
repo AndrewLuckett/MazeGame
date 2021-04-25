@@ -5,28 +5,22 @@
 #include "../core/input.h"
 
 MazeGame::MazeGame() {
-	
 	world = GameWorld({ 100,100 });
-	player = Player(&world);
 
+	addSubSystem(new Player(&world));
+	addSubSystem(&world);
+	
 	world.generateNewLevel();
 
 	zoom = 0.15f;
 }
 
 int MazeGame::update(timesys::system_clock::duration deltaTime) {
-	player.update(deltaTime);
-	world.update(deltaTime);
+	System::update(deltaTime);
 	if (!world.isLevelLoaded()) {
 		levelsCompleted += 1;
 		world.generateNewLevel();
 	}
-	return 0;
-}
-
-int MazeGame::fixedUpdate() {
-	player.fixedUpdate();
-	world.fixedUpdate();
 	return 0;
 }
 
@@ -39,9 +33,7 @@ int MazeGame::getRenderArr(std::queue<Model> &arr) {
 
 	std::queue<Model> sub;
 
-	world.getRenderArr(sub);
-
-	player.getRenderArr(sub);
+	System::getRenderArr(sub);
 
 	while (!sub.empty()) {
 		arr.push(scaleModel(sub.front(), scale));

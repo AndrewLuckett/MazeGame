@@ -1,12 +1,12 @@
 #include "Player.h"
-#include "../core/input.h"
+#include "Engine/core/input.h"
 #include "Sprite.h"
-#include "../render/Texture.h"
+#include "Engine/render/Texture.h"
 
 Player::Player(GameWorld* world){
 	this->world = world;
 	base = getGenericModel();
-	base.textureId = loadTexture("res/textures/player.png");// , GL_NEAREST);
+	base.textureId = loadTexture("res/textures/player.png", GL_NEAREST);
 }
 
 int Player::update(timesys::system_clock::duration deltaTime){

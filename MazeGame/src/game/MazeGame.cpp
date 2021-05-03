@@ -1,8 +1,8 @@
 #include "MazeGame.h"
-#include "../render/Texture.h"
-#include "../render/Vao.h"
-#include "../render/Window.h"
-#include "../core/input.h"
+#include "Engine/render/Texture.h"
+#include "Engine/render/Vao.h"
+#include "Engine/render/Window.h"
+#include "Engine/core/input.h"
 
 MazeGame::MazeGame() {
 	world = GameWorld({ 100,100 });

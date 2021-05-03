@@ -1,7 +1,7 @@
 #include "GameWorld.h"
 #include "Sprite.h"
-#include "../render/Texture.h"
-#include "../render/Vao.h"
+#include "Engine/render/Texture.h"
+#include "Engine/render/Vao.h"
 #include "MazeGenerator.h"
 #include <cmath>
 

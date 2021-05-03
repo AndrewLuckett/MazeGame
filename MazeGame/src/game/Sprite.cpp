@@ -1,6 +1,6 @@
 #include "Sprite.h"
-#include "../render/Vao.h"
-#include "../render/Texture.h"
+#include "Engine/render/Vao.h"
+#include "Engine/render/Texture.h"
 
 Model gen;
 bool created = false;

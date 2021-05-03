@@ -1,14 +1,19 @@
-#include "../global/Shorts.h"
-#include "../render/Window.h"
-#include "../render/Renderer.h"
-#include "../core/GameMain.h"
-#include "../core/FrameCounter.h"
+#include "Engine/global/Shorts.h"
+#include "Engine/global/Version.h"
+#include "Engine/render/Window.h"
+#include "Engine/render/Renderer.h"
+#include "Engine/core/GameMain.h"
+#include "Engine/core/FrameCounter.h"
 #include "../game/MazeGame.h"
 #include <queue>
 
 int main() {
+	debugPrint("Engine Version: " << Engine::versionToString(Engine::CurrentVersion));
+
 	window::init("Maze Game - Andrew Luckett 2019");
 	window::myinit();
+
+	//glfwSwapInterval(0); //No vsync
 
 	GameMain gameInst = GameMain(); //Top level system
 

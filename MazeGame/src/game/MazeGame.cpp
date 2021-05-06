@@ -3,6 +3,7 @@
 #include "Engine/render/Vao.h"
 #include "Engine/render/Window.h"
 #include "Engine/core/input.h"
+#include "Engine/render/Renderer.h"
 
 MazeGame::MazeGame() {
 	world = GameWorld({ 100,100 });
@@ -31,14 +32,9 @@ int MazeGame::getRenderArr(std::queue<Model> &arr) {
 	scale.top = { zoom, 0.0f, 0.0f };
 	scale.mid = { 0.0f, zoom*aspect , 0.0f };
 
-	std::queue<Model> sub;
+	System::getRenderArr(arr);
 
-	System::getRenderArr(sub);
-
-	while (!sub.empty()) {
-		arr.push(scaleModel(sub.front(), scale));
-		sub.pop();
-	}
+	renderer::loadGlobalTransform(window::getProgramID(), scale);
 	
 	return 0;
 }
